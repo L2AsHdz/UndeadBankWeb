@@ -1,0 +1,51 @@
+<div class="container-fluid col-md-8">
+  <div class="row">
+    <div class="col">
+      <div class="card my-4">
+        <div class="card-header">
+          <h4>Operaciones en cuenta</h4>
+        </div>
+        <div class="card-body">
+          <form #operationForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="form-check">
+                <input [(ngModel)]="deposit" [value]="false" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Retirar dinero
+                </label>
+              </div>
+              <div class="form-check">
+                <input [(ngModel)]="deposit" [value]="true" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Depositar dinero
+                </label>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="form-group col">
+                <label for="notify">*Cuenta:</label>
+                <select [(ngModel)]="operation.destinationAccount" name="notify" id="notify"
+                        class="form-select" required>
+                  <option *ngFor="let a of accounts" value="{{a.accountId}}">{{a.accountId}}
+                    - {{a.nameAccount}}</option>
+                </select>
+                <div class="form-gruop col">
+                  <label for="balance">*Cantidad a operar:</label>
+                  <input [(ngModel)]="operation.amount" type="number" class="form-control" name="balance"
+                         id="balance" required>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="d-grid gap-2">
+                <button [disabled]="!operationForm.form.valid" class="btn btn-primary" type="submit">Realizar
+                  operacion
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

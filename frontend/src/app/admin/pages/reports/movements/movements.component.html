@@ -1,0 +1,55 @@
+<div class="container-fluid col-md-8">
+  <div class="row">
+    <div class="col">
+      <div class="card my-4">
+        <div class="card-header">
+          <h4>Transacciones por cuenta</h4>
+          <form #transactionForm="ngForm" (ngSubmit)="onSubmit(transactionForm)">
+            <div class="row">
+              <div class="col">
+                <input [(ngModel)]="request.startDate" type="datetime-local" class="form-control"  name="startDate" required>
+              </div>
+              <div class="col">
+                <input [(ngModel)]="request.endDate" type="datetime-local" class="form-control"  name="endDate" required>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="d-grid gap-2">
+                <button [disabled]="!transactionForm.form.valid" class="btn btn-primary" type="submit">Buscar transacciones</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover table-sm" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>No. Referencia</th>
+              <th>Id Usuario</th>
+              <th>Nombre usuario</th>
+              <th>Nombre cuenta</th>
+              <th>Saldo anterior</th>
+              <th>Cantidad</th>
+              <th>Fecha</th>
+              <th>Tipo Operacion</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let t of transacciones; let i = index;">
+              <td>{{i+1}}</td>
+              <td>{{t.referenceNumber}}</td>
+              <td>{{t.userId}}</td>
+              <td>{{t.userFullName}}</td>
+              <td>{{t.nameAccount}}@undeadbank.com</td>
+              <td>{{t.previousBalance | currency:'QTG':'symbol'}}</td>
+              <td>{{t.amount | currency:'QTG':'symbol' }}</td>
+              <td>{{t.operationDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td>{{t.operationType == 'DEBIT' ? 'DEBITO' : 'CREDITO'}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container-fluid col-md-8">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <div class="card-header">
+                    <h4>Cuentas congeladas</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>No. Cuenta</th>
+                            <th>Id Usuario</th>
+                            <th>Usuario</th>
+                            <th>Nombre de cuenta</th>
+                            <th>Saldo</th>
+                            <th>Tipo de cuenta</th>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let t of frozenAccounts; let i = index;">
+                            <td>{{i+1}}</td>
+                            <td>{{t.accountId}}</td>
+                            <td>{{t.userId}}</td>
+                            <td>{{t.userFullName}}</td>
+                            <td>{{t.nameAccount}}@undeadbank.com</td>
+                            <td>{{t.balance | currency:'QTG':'symbol'}}</td>
+                            <td>{{t.accountType}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

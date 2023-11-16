@@ -1,0 +1,69 @@
+<div class="container-fluid py-2 bg-secondary">
+  <div class="row">
+    <div class="col-3">
+      <a class="btn btn-primary btn-block" (click)="backList()">
+        <i class="fas fa-long-arrow-left"></i> Regresar al listado
+      </a>
+    </div>
+  </div>
+</div>
+<div class="container mt-2 col-md-6">
+  <div class="row">
+    <div class="col">
+      <div class="card my-4">
+        <div class="card-header">
+          <h3>Agregar usuario</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+            <div class="row py-2">
+              <div class="form-gruop col-4">
+                <label for="identificationNumber">*Numero de identificacion:</label>
+                <input [(ngModel)]="user.identificationNumber" type="number" class="form-control" name="identificationNumber"
+                       id="identificationNumber" required>
+              </div>
+              <div class="form-grup col">
+                <label for="fullName">*Nombre:</label>
+                <input [(ngModel)]="user.fullName" type="text" class="form-control"
+                       id="fullName" name="fullName" required>
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="form-grup col-4">
+                <label for="phoneNumber">*Numero de telefono:</label>
+                <input [(ngModel)]="user.phoneNumber" type="number" class="form-control"
+                       name="phoneNumber" id="phoneNumber" >
+              </div>
+              <div class="form-group col-4">
+                <label for="email">*Email:</label>
+                <input [(ngModel)]="user.email" type="email" class="form-control"
+                       id="email" name="email" required >
+              </div>
+              <div class="form-grup col-4">
+                <label for="birthday">*Fecha Nacimiento:</label>
+                <input [(ngModel)]="user.birthday" type="date" class="form-control"
+                       name="birthday" id="birthday" >
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="form-grup col">
+                <label for="username">*Nombre de usuario:</label>
+                <input [(ngModel)]="user.username" type="text" class="form-control"
+                       name="username" id="username" >
+              </div>
+              <div class="form-group col">
+                <label for="password">*Password:</label>
+                <input [(ngModel)]="user.password" type="password" class="form-control"
+                       id="password" name="password" required >
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success mt-2"
+                      [disabled]="!userForm.form.valid">Guardad usuario</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container-fluid py-2 bg-secondary">
+  <div class="row">
+    <div class="col-3">
+      <a class="btn btn-primary btn-block" (click)="backlist()">
+        <i class="fas fa-long-arrow-left"></i> Regresar al listado
+      </a>
+    </div>
+  </div>
+</div>
+<div class="container mt-2 col-md-6">
+  <div class="row">
+    <div class="col">
+      <div class="card my-4">
+        <div class="card-header">
+          <h3>Agregar usuario</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #accountForm="ngForm">
+            <div class="row py-2">
+              <div class="form-gruop col">
+                <label for="balance">*Saldo:</label>
+                <input [(ngModel)]="account.balance" type="number" class="form-control" name="balance"
+                       id="balance" required>
+              </div>
+              <div class="form-gruop col">
+                <label for="associationPin">*Pin de asociacion:</label>
+                <input [(ngModel)]="account.associationPin" type="number" class="form-control" name="associationPin"
+                       id="associationPin" required>
+              </div>
+              <div class="form-group col-4">
+                <label for="classificationId">*Estado:</label>
+                <select [(ngModel)]="account.statusClassification.classificationId" name="classificationId"
+                        id="classificationId"
+                        class="form-select" required>
+                  <option value="11">Activa</option>
+                  <option value="12">Congelada</option>
+                  <option value="13">Inactiva</option>
+                </select>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success mt-2"
+                        [disabled]="!accountForm.form.valid">Actualizar cuenta
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

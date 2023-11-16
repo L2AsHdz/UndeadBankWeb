@@ -1,0 +1,60 @@
+<nav class="navbar bg-dark fixed-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a href="/homepage" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+      <i class="bi me-2 bi-cash-coin" role="img" aria-label="Bootstrap" style="font-size: 35px"></i> Undead Bank
+    </a>
+    <!--    <a class="navbar-brand" href="#">UndeadBank</a>-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div *ngIf="localStorage.getItem('token')" class="collapse navbar-collapse d-flex justify-content-between"
+         id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="authService.hasRequiredRol(USER_ROL.CUSTOMER)">
+          <a class="nav-link" routerLink="/user/transactions">Movimientos</a>
+        </li>
+        <ng-container *ngIf="authService.hasRequiredRol(USER_ROL.ADMIN)">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/user/list">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/account/list">Cuentas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/exchange">Tipo de cambio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/operations">Saldos</a>
+          </li>
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="#">Cambiar tipo de cuenta</a>-->
+<!--          </li>-->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Reportes
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/admin/reports/movements">Reporte de movimientos</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/reports/frozen">Reporte de cuentas congeladas</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/reports/detail">Reporte de detalle de cuenta</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/reports/total">Reporte de total de cuentas</a></li>
+            </ul>
+          </li>
+        </ng-container>
+      </ul>
+      <div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <span class="nav-link text-white" href="">Bienvenido {{jwtService.getClaim('user')}}</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="" (click)="logout()">Cerrar sesion</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="row" class="mt-5 p-2"></div>
+<router-outlet></router-outlet>

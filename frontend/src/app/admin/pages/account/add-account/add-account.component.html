@@ -1,0 +1,60 @@
+<div class="container-fluid py-2 bg-secondary">
+  <div class="row">
+    <div class="col-3">
+      <a class="btn btn-primary btn-block" (click)="backlist()">
+        <i class="fas fa-long-arrow-left"></i> Regresar al listado de usuarios
+      </a>
+    </div>
+  </div>
+</div>
+<div class="container mt-2 col-md-6">
+  <div class="row">
+    <div class="col">
+      <div class="card my-4">
+        <div class="card-header">
+          <h3>Agregar cuenta a usuario {{user.fullName}}</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #accountForm="ngForm">
+            <div class="row py-2">
+              <div class="form-gruop col">
+                <label for="balance">*Saldo:</label>
+                <input [(ngModel)]="account.balance" type="number" class="form-control" name="balance"
+                       id="balance" required>
+              </div>
+              <div class="form-gruop col">
+                <label for="associationPin">*Pin de asociacion:</label>
+                <input [(ngModel)]="account.associationPin" type="number" class="form-control" name="associationPin"
+                       id="associationPin" required>
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="form-group col">
+                <label for="accountType">*Tipo de cuenta:</label>
+                <select [(ngModel)]="account.accountClassification.classificationId" name="accountType"
+                        id="accountType" class="form-select" required>
+                  <option value="8">BASIC</option>
+                  <option value="9">PREMIUM</option>
+                  <option value="10">PLUS</option>
+                </select>
+              </div>
+              <div class="form-group col">
+                <label for="notify">*Notificar:</label>
+                <select [(ngModel)]="account.notify" name="notify" id="notify"
+                        class="form-select" required>
+                  <option value="true">Sí</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success mt-2"
+                        [disabled]="!accountForm.form.valid">Crear cuenta
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
