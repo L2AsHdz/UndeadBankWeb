@@ -3,7 +3,7 @@
     <div class="col">
       <div class="card my-4">
         <div class="card-header">
-          <h4>Listado de cuentas</h4>
+          <h4>Listado de cuentas activas</h4>
         </div>
         <div class="card-body">
           <table class="table table-hover table-sm" cellspacing="0" width="100%">
@@ -25,7 +25,7 @@
               <td>{{a.userFullName}}</td>
               <td>{{a.accountId}}</td>
               <td>{{a.nameAccount}}@undeadbank.com</td>
-              <td>{{a.balance | currency:'QTG':'symbol'}}</td>
+              <td>{{getFormatedValue(a, a.balance)}}</td>
               <td>{{a.accountType}}</td>
               <td>{{a.accountStatus}}</td>
               <td>
@@ -42,6 +42,47 @@
         </div>
       </div>
     </div>
+
+    <div class="card my-4">
+      <div class="card-header">
+        <h4>Listado de cuentas inactivas</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-sm" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Id Usuario</th>
+            <th>Nombre Usuario</th>
+            <th>No. Cuenta</th>
+            <th>Nombre cuenta</th>
+            <th>Saldo</th>
+            <th>Tipo de cuenta</th>
+            <th>Estado</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let a of accounts2; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{a.userId}}</td>
+            <td>{{a.userFullName}}</td>
+            <td>{{a.accountId}}</td>
+            <td>{{a.nameAccount}}@undeadbank.com</td>
+            <td>{{getFormatedValue(a, a.balance)}}</td>
+            <td>{{a.accountType}}</td>
+            <td>{{a.accountStatus}}</td>
+            <td>
+              <button (click)="editar(a)" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Editar
+              </button>&nbsp;
+              <button (click)="eliminar(a)" class="btn btn-danger">
+                <i class="fas fa-edit"></i> Eliminar
+              </button>&nbsp;
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
+  </div>
 

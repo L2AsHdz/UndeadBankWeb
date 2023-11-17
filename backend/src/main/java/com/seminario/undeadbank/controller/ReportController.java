@@ -23,7 +23,8 @@ public class ReportController {
     @PostMapping("/userTransactions")
     @PreAuthorize("hasAuthority('CUSTOMER')")
     public ResponseEntity<List<AccountTransactionsView>> getUserTransactions(@RequestBody TransactionDetailsRequestDto requestDto) {
-        return ResponseEntity.ok(reportService.getUserTransactions(requestDto));
+        var result = reportService.getUserTransactions(requestDto);
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/adminTransactions")

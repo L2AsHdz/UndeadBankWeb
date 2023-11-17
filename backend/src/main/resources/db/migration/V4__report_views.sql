@@ -9,7 +9,8 @@ SELECT
     t.previousBalance,
     t.amount,
     t.datetime AS operationDate,
-    C.description AS operationType
+    C.description AS operationType,
+    C1.description accountType
 FROM
     Transaction t
         INNER JOIN
@@ -20,6 +21,7 @@ FROM
     User U ON CA.userId = U.userId
         INNER JOIN
     Classification C ON t.transactionClassificationId = C.classificationId
+        inner join Classification C1 on A.accountClassificationId = C1.classificationId
 ORDER BY
     t.transactionId ASC;
 

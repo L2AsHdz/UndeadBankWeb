@@ -19,7 +19,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping("/list/{userId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('CUSTOMER')")
     public ResponseEntity<List<AccountDetailView>> getAccountByUserId(@PathVariable Long userId) {
         var accounts = accountService.findAccountsByUserId(userId);
         return ResponseEntity.ok(accounts);

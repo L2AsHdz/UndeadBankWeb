@@ -3,6 +3,7 @@ import {AdminService} from "../../../admin.service";
 import {Router} from "@angular/router";
 import {AccountDetail} from "../../../../commons/models/AccountDetail";
 import {User} from "../../../models/User";
+import {AccountTransaction} from "../../../../user/models/account-transaction";
 
 @Component({
   selector: 'app-list-account',
@@ -14,14 +15,15 @@ export class ListAccountComponent implements OnInit{
   private adminService: AdminService = inject(AdminService);
   private router: Router = inject(Router);
   accounts: AccountDetail[] = [];
+  accounts2: AccountDetail[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
     this.adminService.getAccounts().subscribe({
       next: (data: AccountDetail[]) => {
-        data = data.filter(account => account.accountStatus != 'INACTIVE');
-        this.accounts = data
+        this.accounts = data.filter(account => account.accountStatus != 'INACTIVE');
+        this.accounts2 = data.filter(account => account.accountStatus != 'ACTIVE');
       },
       error: err => console.log(err)
     });
@@ -37,6 +39,18 @@ export class ListAccountComponent implements OnInit{
         this.ngOnInit();
       }
     });
+  }
+
+  getFormatedValue(transaction: AccountDetail, amount: number){
+    switch (transaction.accountType){
+      case 'BASIC':
+        return ` Q. ${amount}`;
+      case 'PREMIUM':
+        return ` $. ${amount}`;
+      case 'PLUS':
+        return ` €. ${amount}`;
+      default: return `Q. ${amount}`;
+    }
   }
 
 }

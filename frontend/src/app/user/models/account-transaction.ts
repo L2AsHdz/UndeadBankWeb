@@ -9,4 +9,5 @@ export class AccountTransaction {
   amount: number;
   operationDate: string;
   operationType: string;
+  accountType: string;
 }

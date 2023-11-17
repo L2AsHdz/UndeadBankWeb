@@ -27,4 +27,5 @@ public class AccountTransactionsView {
     private Double amount;
     private LocalDateTime operationDate;
     private String operationType;
+    private String accountType;
 }
